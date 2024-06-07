@@ -30,3 +30,6 @@ My DB refers to such entities as:
 - Country
 - City
 - Order
+
+And provides a business solution for the DB layer of my application.
+It allows the customer to place an order, subscribe to our newsletter or simply receive a consultation from our customer support specialists.
