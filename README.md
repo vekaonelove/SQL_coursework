@@ -12,7 +12,7 @@ _My EHU/ESDE coursework for SQL (Relational Databases + SQL and Data Processing)
 2) Creating DB using PosgreSQL - [OLTP solution](https://github.com/vekaonelove/SQL_coursework/blob/main/OLTP%20solution)
 3) Creating datasets: 2 .csv files containing data according to DB entities: [file1](https://github.com/vekaonelove/SQL_coursework/blob/main/file1.csv) and [file2](https://github.com/vekaonelove/SQL_coursework/blob/main/file2.csv)
 4) Writing a _**rerunable**_ ETL script to load data from .csv files to our DB using [Spring Batch](https://github.com/vekaonelove/SQL_coursework/tree/main/src)
-5) Building a snowflake DWH based on our initial DB (OLAP solution)
+5) Building a snowflake DWH based on our initial DB [(OLAP solution)](https://github.com/vekaonelove/SQL_coursework/blob/main/OLAP%20solution)
 6) Writing a second ETL script to move data from OLTP DB to the OLAP one using Spring Batch
 7) Creating a PowerBI report with visualisation
 8) Writing detailed documentation on the project and steps performed
