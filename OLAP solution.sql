@@ -12,10 +12,7 @@ DROP TABLE IF EXISTS fact_order CASCADE;
 CREATE TABLE dim_country (
     country_key SERIAL PRIMARY KEY,
     country_id SERIAL UNIQUE,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Create the City dimension table
@@ -23,10 +20,7 @@ CREATE TABLE dim_city (
     city_key SERIAL PRIMARY KEY,
     city_id SERIAL UNIQUE,
     country_id INT REFERENCES dim_country(country_id),
-    name VARCHAR(100) NOT NULL,
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    name VARCHAR(100) NOT NULL
 );
 
 -- Create the ExperienceLevel dimension table
@@ -43,10 +37,7 @@ CREATE TABLE dim_experience_level (
 CREATE TABLE dim_subject (
     subject_key SERIAL PRIMARY KEY,
     subject_id SERIAL UNIQUE,
-    name VARCHAR(100) NOT NULL UNIQUE,
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Create the Performer dimension table
@@ -58,10 +49,7 @@ CREATE TABLE dim_performer (
     experience_id INT REFERENCES dim_experience_level(experience_id),
     subject_id INT REFERENCES dim_subject(subject_id),
     phone_number VARCHAR(255),
-    email VARCHAR(100),
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    email VARCHAR(100)
 );
 
 -- Create the Exam dimension table
@@ -70,10 +58,7 @@ CREATE TABLE dim_exam (
     exam_id SERIAL UNIQUE,
     subject_id INT REFERENCES dim_subject(subject_id),
     country_id INT REFERENCES dim_country(country_id),
-    name VARCHAR(100) NOT NULL UNIQUE,
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    name VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- Create the Customer dimension table
@@ -83,10 +68,7 @@ CREATE TABLE dim_customer (
     name VARCHAR(100) NOT NULL,
     surname VARCHAR(100) NOT NULL,
     phone_number VARCHAR(255),
-    email VARCHAR(100),
-    valid_from TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    valid_to TIMESTAMP,
-    current_flag BOOLEAN DEFAULT TRUE
+    email VARCHAR(100)
 );
 
 -- Create the Order fact table
@@ -96,10 +78,7 @@ CREATE TABLE fact_order (
     performer_id INT REFERENCES dim_performer(performer_id),
     exam_id INT REFERENCES dim_exam(exam_id),
     city_id INT REFERENCES dim_city(city_id),
-    customer_id INT REFERENCES dim_customer(customer_id),
-    quantity INT,
-    total_amount NUMERIC(10, 2),
-    order_date TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+    customer_id INT REFERENCES dim_customer(customer_id)
 );
 
 -- Function to handle SCD Type 2 updates for dim_customer
